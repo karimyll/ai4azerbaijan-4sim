@@ -6,23 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "menu")
+@Table(name = "sub_menu")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class MenuEntity {
+public class SubMenuEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name;
 
-    private String slug;
-
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
-    private List<SubMenuEntity> subMenu;
+    @ManyToOne
+    private MenuEntity menu;
 }
