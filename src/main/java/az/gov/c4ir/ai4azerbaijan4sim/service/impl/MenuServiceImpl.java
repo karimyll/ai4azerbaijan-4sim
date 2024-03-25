@@ -2,6 +2,7 @@ package az.gov.c4ir.ai4azerbaijan4sim.service.impl;
 
 import az.gov.c4ir.ai4azerbaijan4sim.dao.repository.MenuRepository;
 import az.gov.c4ir.ai4azerbaijan4sim.exception.EntityExistException;
+import az.gov.c4ir.ai4azerbaijan4sim.exception.EntityNotFoundException;
 import az.gov.c4ir.ai4azerbaijan4sim.mapper.MenuMapper;
 import az.gov.c4ir.ai4azerbaijan4sim.model.menu.RequestMenuDTO;
 import az.gov.c4ir.ai4azerbaijan4sim.model.menu.ResponseMenuDTO;
@@ -34,12 +35,20 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public void update(RequestMenuDTO requestMenuDTO) {
-
+    public void update(Long id, RequestMenuDTO requestMenuDTO) {
+        var menu = menuRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("MENU_NOT_FOUND")
+        );
+        menuRepository.save(menuMapper.mapToUpdateEntity(menu, requestMenuDTO));
     }
 
     @Override
     public void deleteById(Long id) {
-
+        var menu = menuRepository.existsById(id);
+        if (menu){
+            menuRepository.deleteById(id);
+        }else{
+            throw new EntityNotFoundException("MENU_NOT_FOUND");
+        }
     }
 }

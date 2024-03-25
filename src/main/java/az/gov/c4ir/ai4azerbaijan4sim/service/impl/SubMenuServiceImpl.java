@@ -25,9 +25,9 @@ public class SubMenuServiceImpl implements SubMenuService {
     }
 
     @Override
-    public ResponseSubMenuDTO getSubMenuByMenuId(Long id) {
-        var submenu = repository.findByMenu_Id(id).orElseThrow(
-                () -> new EntityNotFoundException("MENU_NOT_FOUND")
+    public ResponseSubMenuDTO getById(Long id) {
+        var submenu = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("SUB_MENU_NOT_FOUND")
         );
         return mapper.mapToDTO(submenu);
     }
@@ -46,11 +46,21 @@ public class SubMenuServiceImpl implements SubMenuService {
 
     @Override
     public void update(Long id, RequestSubMenuDTO requestSubMenuDTO) {
+        var submenu = repository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("SUBMENU_NOT_FOUND")
+        );
 
+        repository.save(mapper.mapToUpdateEntity(submenu, requestSubMenuDTO));
     }
 
     @Override
     public void deleteById(Long id) {
+        var menu = repository.existsById(id);
 
+        if (menu){
+            repository.deleteById(id);
+        }else {
+            throw new EntityNotFoundException("SUBMENU_NOT_FOUND");
+        }
     }
 }

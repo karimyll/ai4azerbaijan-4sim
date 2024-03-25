@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +21,12 @@ public class SubMenuController {
         return service.getAllSubMenu(pageable);
     }
 
+    @GetMapping("/{id}")
+    public ResponseSubMenuDTO getById(@PathVariable Long id){
+        return service.getById(id);
+    }
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void add(@RequestBody @Valid RequestSubMenuDTO requestSubMenuDTO){
         service.add(requestSubMenuDTO);
     }
@@ -29,4 +35,11 @@ public class SubMenuController {
     public void update(@PathVariable Long id, @RequestBody RequestSubMenuDTO requestSubMenuDTO) {
         service.update(id, requestSubMenuDTO);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id){
+        service.deleteById(id);
+    }
+
 }

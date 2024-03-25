@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface SubMenuService {
     Page<ResponseSubMenuDTO> getAllSubMenu(Pageable pageable);
-    ResponseSubMenuDTO getSubMenuByMenuId(Long id);
+    ResponseSubMenuDTO getById(Long id);
     void add(RequestSubMenuDTO requestSubMenuDTO);
     void update(Long id, RequestSubMenuDTO requestSubMenuDTO);
     void deleteById(Long id);

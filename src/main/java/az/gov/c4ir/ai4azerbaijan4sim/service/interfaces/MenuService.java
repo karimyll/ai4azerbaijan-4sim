@@ -8,6 +8,6 @@ import org.springframework.data.domain.Pageable;
 public interface MenuService {
     Page<ResponseMenuDTO> getAllMenu(Pageable pageable);
     void add(RequestMenuDTO requestMenuDTO);
-    void update(RequestMenuDTO requestMenuDTO);
+    void update(Long id, RequestMenuDTO requestMenuDTO);
     void deleteById(Long id);
 }

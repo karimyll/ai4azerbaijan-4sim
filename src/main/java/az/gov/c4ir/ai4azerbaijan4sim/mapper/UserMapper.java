@@ -12,20 +12,5 @@ import java.util.stream.Collectors;
 public interface UserMapper {
 
     UserEntity mapRegisterRequestDtoToEntity(UserRegisterRequestDTO userRegisterRequestDTO);
-
-//    @AfterMapping
-//    default void mapRoles(UserRegisterRequestDTO userRegisterRequestDTO, @MappingTarget UserEntity userEntity) {
-//        if (userRegisterRequestDTO.getRoles() != null) {
-//            Set<RoleEntity> roleEntities = userRegisterRequestDTO.getRoles().stream()
-//                    .map(roleDTO -> {
-//                        RoleEntity roleEntity = new RoleEntity();
-//                        roleEntity.setId(roleDTO.getId());
-//                        return roleEntity;
-//                    })
-//                    .collect(Collectors.toSet());
-//
-//            userEntity.setRoles(roleEntities);
-//        }
-//    }
 }
 

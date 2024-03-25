@@ -2,23 +2,22 @@ package az.gov.c4ir.ai4azerbaijan4sim.dao.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "sub_menu")
+@Table(name = "sub_menu_item")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
-public class SubMenuEntity {
+public class SubMenuItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @ManyToOne
-    private MenuEntity menu;
-    @OneToOne(mappedBy = "subMenu")
-    private SubMenuItemEntity subMenuItem;
+    private String title;
+    private String content;
+    private String media_url;
+    @OneToOne
+    @JoinColumn(name = "sub_menu_id")
+    private SubMenuEntity subMenu;
 }

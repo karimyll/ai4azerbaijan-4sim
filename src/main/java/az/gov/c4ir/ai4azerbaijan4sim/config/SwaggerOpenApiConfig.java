@@ -22,9 +22,9 @@ public class SwaggerOpenApiConfig {
     public OpenAPI springOpenAPI() {
         final String securitySchemeName = "bearerAuth";
         return new OpenAPI()
-                .info(new Info().title("ByteBridge Academy API")
-                        .description("Final Matrix Project")
-                        .version("v0.0.1")
+                .info(new Info().title("4SIM API")
+                        .description("AI 4 AZERBAIJAN PROJECT")
+                        .version("v1.0.0")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                         .description("SpringBoot Wiki Documentation")

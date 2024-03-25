@@ -1,6 +1,7 @@
 package az.gov.c4ir.ai4azerbaijan4sim.model.submenu;
 
 import az.gov.c4ir.ai4azerbaijan4sim.model.menu.MenuDTO;
+import az.gov.c4ir.ai4azerbaijan4sim.model.submenuitem.ResponseMenuItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -11,5 +12,5 @@ import lombok.RequiredArgsConstructor;
 public class ResponseSubMenuDTO {
     private Long id;
     private String name;
-    private MenuDTO menu;
+    private ResponseMenuItemDTO subMenuItem;
 }
